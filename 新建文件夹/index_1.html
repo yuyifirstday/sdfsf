@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+        *{
+        	margin: 0;
+        	padding: 0;
+        }
+        #tab td{
+            font-family: "微软雅黑";
+            height: 30px;
+        }
+        #tbl td{
+        	font-family: "微软雅黑";
+            height: 30px;
+        }
+        #btn1,#btn2{
+        	width: 60px;
+        	height: 25px;
+
+        }
+        #inp1,#inp2,#inp3,#inp4,#inp5{
+        	height: 21px;
+        }
+        p{
+        	font-family: "微软雅黑";
+        }
+	</style>
+</head>
+<body>
+<table id="tbl">
+<tr>
+<td>
+   姓名:
+</td><td>
+   <input type="text" id="inp1" />
+</td>
+   </tr>
+   <tr>
+	<td>
+	Email:
+	</td><td><input type="email" id="inp2"/></td></tr>
+	<tr>
+	<td>电话号码:</td>
+	<td><input type="text" id="inp3" /></td></tr>
+	<tr>
+	<td>备注:</td>
+	<td><input type="text" id="inp5" /></td></tr>
+	<tr>
+	<td></td><td><button id="btn1">保存</button></td></tr><br/>
+	</table>
+	<br/>
+	<p>检索：<input type="text" id="inp4" />
+	<button id="btn2">检搜</button></p><br />
+    <table id="tab">
+    	<tr>
+    		<td></td>
+    		<td></td>
+    	</tr>
+    	<tr>
+    		<td></td>
+    		<td></td>
+    	</tr>
+    	<tr>
+    		<td></td>
+    		<td></td>
+    	</tr>
+    	<tr>
+    		<td></td>
+    		<td></td>
+    	</tr>
+    </table>
+	<script type="text/javascript">
+        var p = document.querySelector("#p");
+        var tab = document.querySelectorAll("#tab td");
+        btn1.onclick = function(){
+        if(typeof(Storage)!=="undefined"){	
+          var obj = new Object();
+              obj.name = inp1.value;
+              obj.wName = inp2.value;
+              obj.zName = inp3.value;
+              obj.num = inp5.value;
+          var str = JSON.stringify(obj);
+          localStorage.setItem(obj.name,str);
+
+        }
+        else{
+        	alert("不支持本地存储")
+        }
+    }
+        btn2.onclick = function(){
+        	var pro = inp4.value;
+        	var dx = localStorage.getItem(pro);
+        	var p1 = JSON.parse(dx);
+            tab[0].innerHTML = "姓名:";
+            tab[1].innerHTML = p1.name;
+            tab[2].innerHTML = "Email:";
+            tab[3].innerHTML = p1.wName;
+            tab[4].innerHTML = "电话号码:";
+            tab[5].innerHTML = p1.zName;
+            tab[6].innerHTML = "备注:";
+            tab[7].innerHTML = p1.num;
+        }
+	</script>
+</body>
+</html>
